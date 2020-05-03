@@ -97,6 +97,10 @@ func login(c *gin.Context) {
 		case nil:
 			users = append(users, user)
 			println(user.username)
+			c.JSON(200, gin.H{
+				"success": "true",
+				"message": "login succeed ",
+			})
 		default:
 			logMessage := getLogMessage(hostName, serviceName, "GET", "/search", 1, time.Since(start).Nanoseconds()/1000000, "\"error querying db\"")
 			log.Println(logMessage)
@@ -143,6 +147,7 @@ func logout(c *gin.Context) {
 			"success": "false",
 			"message": "internal server error",
 		})
+
 		event = getEvent("/search", time.Since(start).Nanoseconds()/1000, "500", false, start)
 		go postEvent(event)
 		return
@@ -163,6 +168,10 @@ func logout(c *gin.Context) {
 		case nil:
 			users = append(users, user)
 			println(user.username)
+			c.JSON(200, gin.H{
+				"success": "true",
+				"message": "logout succeed ",
+			})
 		default:
 			logMessage := getLogMessage(hostName, serviceName, "GET", "/search", 1, time.Since(start).Nanoseconds()/1000000, "\"error querying db\"")
 			log.Println(logMessage)
