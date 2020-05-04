@@ -41,7 +41,7 @@ func main() {
 	router.POST("/", func(c *gin.Context) {
 		fmt.Printf("URL to store: \n")
 	})
-	router.GET("/login", login)
+	router.POST("/login", login)
 	router.POST("/logout", logout)
 	router.Run(":" + port)
 }
