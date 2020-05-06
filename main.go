@@ -15,6 +15,8 @@ import (
 var serviceName = "login"
 var APP_NAME = "perfeng_search"
 var hostName = "https://loginingo.herokuapp.com/"
+var loaderIOPath = "loaderio-f55c136af99151b21f7ddb26dd774a61.txt"
+var loaderIOUrlPath = "/loaderio-f55c136af99151b21f7ddb26dd774a61.txt"
 
 type User struct {
 	userid     int64
@@ -43,6 +45,8 @@ func main() {
 	})
 	router.POST("/login", login)
 	router.POST("/logout", logout)
+	router.StaticFile(loaderIOUrlPath, loaderIOPath)
+
 	router.Run(":" + port)
 }
 
